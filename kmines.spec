@@ -5,22 +5,22 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmines
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kmines-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kmines-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kmines-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kmines-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kmines-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kmines-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
-Requires: kmines-bin
-Requires: kmines-data
-Requires: kmines-license
-Requires: kmines-locales
+Requires: kmines-bin = %{version}-%{release}
+Requires: kmines-data = %{version}-%{release}
+Requires: kmines-license = %{version}-%{release}
+Requires: kmines-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 KMINES : the KDE minesweeper
@@ -30,8 +30,8 @@ Distributed under the GNU General Public License
 %package bin
 Summary: bin components for the kmines package.
 Group: Binaries
-Requires: kmines-data
-Requires: kmines-license
+Requires: kmines-data = %{version}-%{release}
+Requires: kmines-license = %{version}-%{release}
 
 %description bin
 bin components for the kmines package.
@@ -70,27 +70,27 @@ locales components for the kmines package.
 
 
 %prep
-%setup -q -n kmines-18.08.0
+%setup -q -n kmines-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535231597
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549870560
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535231597
+export SOURCE_DATE_EPOCH=1549870560
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kmines
-cp COPYING %{buildroot}/usr/share/doc/kmines/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/kmines/COPYING.DOC
-cp LICENSE %{buildroot}/usr/share/doc/kmines/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/kmines
+cp COPYING %{buildroot}/usr/share/package-licenses/kmines/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kmines/COPYING.DOC
+cp LICENSE %{buildroot}/usr/share/package-licenses/kmines/LICENSE
 pushd clr-build
 %make_install
 popd
@@ -167,10 +167,10 @@ popd
 /usr/share/doc/HTML/uk/kmines/index.docbook
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kmines/COPYING
-/usr/share/doc/kmines/COPYING.DOC
-/usr/share/doc/kmines/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kmines/COPYING
+/usr/share/package-licenses/kmines/COPYING.DOC
+/usr/share/package-licenses/kmines/LICENSE
 
 %files locales -f kmines.lang
 %defattr(-,root,root,-)
