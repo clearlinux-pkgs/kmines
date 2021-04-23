@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmines
-Version  : 20.12.3
-Release  : 27
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/kmines-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/kmines-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/kmines-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 28
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/kmines-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/kmines-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/kmines-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -71,15 +71,15 @@ locales components for the kmines package.
 
 
 %prep
-%setup -q -n kmines-20.12.3
-cd %{_builddir}/kmines-20.12.3
+%setup -q -n kmines-21.04.0
+cd %{_builddir}/kmines-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618684861
+export SOURCE_DATE_EPOCH=1619219497
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -95,12 +95,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618684861
+export SOURCE_DATE_EPOCH=1619219497
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmines
-cp %{_builddir}/kmines-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/kmines/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/kmines-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmines/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/kmines-20.12.3/LICENSE %{buildroot}/usr/share/package-licenses/kmines/2169315544493c7e4a5dd8bac41b70ab63ec417e
+cp %{_builddir}/kmines-21.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmines/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kmines-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmines/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
@@ -178,9 +177,8 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kmines/2169315544493c7e4a5dd8bac41b70ab63ec417e
-/usr/share/package-licenses/kmines/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/kmines/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/kmines/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/kmines/7697008f58568e61e7598e796eafc2a997503fde
 
 %files locales -f kmines.lang
 %defattr(-,root,root,-)
